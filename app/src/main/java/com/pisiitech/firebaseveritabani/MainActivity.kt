@@ -39,7 +39,8 @@ fun Sayfa() {
     //ekle()
     //tumKisiler()
     //sil()
-    guncelle()
+    //guncelle()
+    esitlik()
 }
 
 fun ekle() {
@@ -88,6 +89,30 @@ fun guncelle() {
     bilgiler["kisi_yas"] = 99
 
     refKisiler.child("-Ne2fh3-Ox01p4O2tmu7").updateChildren(bilgiler)
+}
+
+fun esitlik() {
+    val db = FirebaseDatabase.getInstance()
+    val refKisiler = db.getReference("kisiler")
+
+    val sorgu = refKisiler.orderByChild("kisi_ad").equalTo("Mehmet")
+
+    sorgu.addValueEventListener(object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            for (d in snapshot.children) {
+                val kisi = d.getValue(Kisiler::class.java)
+
+                if(kisi != null) {
+                    Log.e("Kisi Bilgi","***************")
+                    Log.e("Kisi key",d.key!!)
+                    Log.e("Kisi ad", kisi.kisi_ad!!)
+                    Log.e("Kisi yas", kisi.kisi_yas.toString())
+                }
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) { }
+    })
 }
 
 @Preview(showBackground = true)
