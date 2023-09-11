@@ -37,7 +37,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Sayfa() {
     //ekle()
-    tumKisiler()
+    //tumKisiler()
+    sil()
 }
 
 fun ekle() {
@@ -47,7 +48,6 @@ fun ekle() {
     val yeniKisi = Kisiler("Talat",36)
     refKisiler.push().setValue(yeniKisi)
 }
-
 
 fun tumKisiler() {
     val db = FirebaseDatabase.getInstance()
@@ -69,6 +69,13 @@ fun tumKisiler() {
 
         override fun onCancelled(error: DatabaseError) { }
     })
+}
+
+fun sil() {
+    val db = FirebaseDatabase.getInstance()
+    val refKisiler = db.getReference("kisiler")
+
+    refKisiler.child("-Ne2g0Ho4X9HbKf0WqCx").removeValue()
 }
 
 @Preview(showBackground = true)
