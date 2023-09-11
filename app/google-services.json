@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "800659078762",
+    "project_id": "udemyegitim-67846",
+    "storage_bucket": "udemyegitim-67846.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:800659078762:android:b6ef0aa26f0a6ed5325413",
+        "android_client_info": {
+          "package_name": "com.pisiitech.firebaseveritabani"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1ehTkLzwLljgqqvR11-jkhHUmkpCAKOg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
