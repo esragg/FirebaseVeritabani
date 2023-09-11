@@ -38,7 +38,8 @@ class MainActivity : ComponentActivity() {
 fun Sayfa() {
     //ekle()
     //tumKisiler()
-    sil()
+    //sil()
+    guncelle()
 }
 
 fun ekle() {
@@ -76,6 +77,17 @@ fun sil() {
     val refKisiler = db.getReference("kisiler")
 
     refKisiler.child("-Ne2g0Ho4X9HbKf0WqCx").removeValue()
+}
+
+fun guncelle() {
+    val db = FirebaseDatabase.getInstance()
+    val refKisiler = db.getReference("kisiler")
+
+    val bilgiler = HashMap<String,Any>()
+    bilgiler["kisi_ad"] = "Yeni Ahmet"
+    bilgiler["kisi_yas"] = 99
+
+    refKisiler.child("-Ne2fh3-Ox01p4O2tmu7").updateChildren(bilgiler)
 }
 
 @Preview(showBackground = true)
