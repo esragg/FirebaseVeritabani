@@ -40,7 +40,9 @@ fun Sayfa() {
     //tumKisiler()
     //sil()
     //guncelle()
-    esitlik()
+    //esitlik()
+    //degerAraligi()
+    limit()
 }
 
 fun ekle() {
@@ -115,6 +117,52 @@ fun esitlik() {
     })
 }
 
+fun degerAraligi() {
+    val db = FirebaseDatabase.getInstance()
+    val refKisiler = db.getReference("kisiler")
+
+    val sorgu = refKisiler.orderByChild("kisi_yas").startAt(30.0).endAt(40.0)
+
+    sorgu.addValueEventListener(object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            for (d in snapshot.children) {
+                val kisi = d.getValue(Kisiler::class.java)
+
+                if(kisi != null) {
+                    Log.e("Kisi Bilgi","***************")
+                    Log.e("Kisi key",d.key!!)
+                    Log.e("Kisi ad", kisi.kisi_ad!!)
+                    Log.e("Kisi yas", kisi.kisi_yas.toString())
+                }
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) { }
+    })
+}
+fun limit() {
+    val db = FirebaseDatabase.getInstance()
+    val refKisiler = db.getReference("kisiler")
+
+    val sorgu = refKisiler.limitToFirst(1)
+
+    sorgu.addValueEventListener(object : ValueEventListener{
+        override fun onDataChange(snapshot: DataSnapshot) {
+            for (d in snapshot.children) {
+                val kisi = d.getValue(Kisiler::class.java)
+
+                if(kisi != null) {
+                    Log.e("Kisi Bilgi","***************")
+                    Log.e("Kisi key",d.key!!)
+                    Log.e("Kisi ad", kisi.kisi_ad!!)
+                    Log.e("Kisi yas", kisi.kisi_yas.toString())
+                }
+            }
+        }
+
+        override fun onCancelled(error: DatabaseError) { }
+    })
+}
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
